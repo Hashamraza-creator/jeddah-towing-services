@@ -91,25 +91,61 @@ h6 {
 /* ---------------- Nav Header CSS ----------------- */
 /* ================================================= */
 
+/* Normal header */
+/* ===================== BASE HEADER ===================== */
+/* Normal header */
 #header {
     background: #222222;
     position: relative;
-    height: 60px;
+    height: 100px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    border-radius: 0;
 }
 
+/* Sticky header with rounded rectangle */
+#header.sticky {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: #222222;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 10px 30px;
+    height: auto;
+    z-index: 1100;
+}
+#header.sticky .mobile-menu {
+    border-radius: 0 0 30px 30px; /* round bottom corners */
+    overflow: hidden; /* prevent content overflow with border radius */
+    border-top: none; /* optional, you can remove border if it clashes */
+}
+
+/* Logo */
 #header .logo {
-   
     padding-left: 25px;
-    left: 0;
     display: inline-block;
-    position: absolute;
+    position: relative;
     line-height: 55px;
+    width: 100px;
 }
 
 #header .logo img {
-    max-height: 50px;
+ 
+    max-width: 200px;
+    height: auto;
 }
 
+/* Main Menu */
 .main-menu {
     padding: 0 130px;
     width: 100%;
@@ -139,99 +175,167 @@ h6 {
     font-weight: 400;
     padding: 0 10px;
     line-height: 60px;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
     display: block;
-    transition: color .25s ease, background-color .25s ease;
+    transition: color 0.25s ease, background-color 0.25s ease;
 }
+
+/* Mobile Menu Button */
 .mobile-menu-btn {
+    display: none; /* hidden on desktop */
     color: red;
     text-align: center;
     font-size: 30px;
     line-height: 57px;
-    display: none;
     white-space: nowrap;
-}
-
-.mobile-menu-btn i {
     cursor: pointer;
+    position: relative;
+    z-index: 1100;
 }
 
+/* Mobile Menu */
 .mobile-menu {
     display: none;
     background: #2a2a2a;
-    border-top: #343434;
+    border-top: 1px solid #343434;
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    left: 0;
+    z-index: 999;
+    top: 100%; /* right below the header */
 }
 
-.mobile-menu .top-menu {
-    display: block;
-}
-
-.mobile-menu .top-menu ul {
+.mobile-menu ul {
     padding: 0;
+    margin: 0;
+    list-style-type: none;
 }
 
-.mobile-menu .top-menu ul li {
+.mobile-menu ul li {
     display: block;
     text-align: center;
+    border-bottom: 1px solid #444;
 }
 
-.mobile-menu .top-menu ul li a {
-    padding: 0;
-    line-height: 40px;
-}
-
-.mobile-menu .top-menu ul li a:hover {
+.mobile-menu ul li a {
+    padding: 12px 0;
+    display: block;
+    color: red;
     text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
+.mobile-menu ul li a:hover {
+    background: #444;
+    color: white;
+}
+
+/* Phone */
 .phone {
-    position: absolute;
-    padding-right: 25px;
-    padding-left: 10px;
-    right: 0;
     color: #fff;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
     line-height: 60px;
     cursor: pointer;
-    transition: color .25s ease;
-    font-family: 'Roboto Slab', serif;
-    font-size: 18px;
-    font-weight: 700;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 15px;
 }
 
 .phone i {
     padding-right: 10px;
     font-size: 20px;
 }
-@media (max-width: 575.98px) {
-    #header .logo {
-        padding-left: 5px;
-    }
 
-    #header .phone {
-        display: none;
-    }
+/* Responsive Rules */
 
-    #header .mobile-menu-btn {
-        padding-right: 5px;
-        display: block;
-        text-align: right;
-        font-size: 20px;
-        line-height: 55px;
-    }
-
-    .main-menu {
-        padding: 0 30px;
-    }
-}
+/* Show hamburger and hide desktop menu below 1200px */
 @media (max-width: 1199.98px) {
     .main-menu {
         display: none;
     }
-
     .mobile-menu-btn {
         display: block;
     }
 }
+
+.phone button
+{
+    border-radius: 20px;
+    background-color: red;
+color: black;
+    border: black 1px solid;
+}
+
+.phone button:hover
+ {
+        background: linear-gradient(45deg, #ff4b1f, rgb(216, 85, 107));
+        color: white;
+        border-color: transparent;
+    }
+
+
+/* Adjust logo padding and hide phone on small screens */
+@media (max-width: 575.98px) {
+    #header .logo {
+        padding-left: 5px;
+    }
+    .phone {
+        display: none;
+    }
+    .main-menu {
+        padding: 0 30px;
+    }
+}
+
+/* mobile-bottom bar  */
+
+.mobile-bottom-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: black;
+    color: red;
+    padding: 15px 30px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-bottom-bar .bar-icon {
+    flex: 1;
+    text-align: center;
+  }
+  .bar-icon img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) saturate(100%) invert(20%) sepia(88%) saturate(2300%) hue-rotate(-10deg) brightness(90%) contrast(90%);
+  }
+  
+  .mobile-bottom-bar .bar-icon img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Show only on mobile screens */
+  @media (max-width: 768px) {
+    .mobile-bottom-bar {
+      display: flex;
+    }
+  }
+  
+
+
+
+
+
 
 /* ================================================= */
 /* --------------- Header Slider CSS --------------- */
@@ -433,6 +537,17 @@ h6 {
     background: black;
 }
 
+.hidden-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 1.5s ease; /* Changed from 10s to 1.5s */
+}
+
+.animate-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 /* ================================================= */
 /* -------------- Section Header Style ------------- */
 /* ================================================= */
@@ -485,6 +600,98 @@ h6 {
         letter-spacing: 0;
     }
 }
+
+
+
+
+
+
+/* Hero Section */
+.video-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Overlay box behind text */
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    z-index: 2;
+    background: red;
+    border-radius: 30px;
+}
+
+/* Typewriter Text Container */
+.typewriter-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%; /* Ensures it fits mobile screens */
+   
+}
+
+/* Typewriter Text */
+.typewriter-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 4s steps(36, end) forwards;
+}
+
+/* Remove blinking caret */
+@keyframes typing {
+    from { width: 0ch; }
+    to { width: 34ch; } /* Match actual characters in your sentence */
+}
+
+/* Responsive font size */
+@media (max-width: 768px) {
+
+
+
+
+    .typewriter-text {
+        font-size: 1.4rem;
+        to { width: 30ch; }
+    }
+}
+
+@media (max-width: 480px) {
+    .typewriter-text {
+        font-size: 1rem;
+        to { width: 28ch; }
+    }
+}
+
+
+
+
+
+
+
 
 /* ================================================= */
 /* ----------------- Amenities Style --------------- */
@@ -690,6 +897,212 @@ h6 {
 #about .content-col a:focus {
     color: #fff;
 }
+
+
+
+.hidden-right {
+    opacity: 0;
+    transform: translateX(100px); /* Starts from right */
+    transition: all 1.5s ease;
+}
+
+.animate-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+@media (max-width: 768px) {
+    .hidden-left,
+    .hidden-right,
+    .animate-left,
+    .animate-right {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+
+#features-section {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+#features-section {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    flex-direction: row; /* default for large screens */
+    flex-wrap: wrap;
+}
+
+/* Feature Highlight Card */
+.feature-highlight-card {
+    flex: 0 0 320px;
+    max-width: 320px;
+    background: linear-gradient(180deg, black, red);
+    color: white;
+    height: 300px;
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    user-select: none;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    order: 0; /* default order */
+}
+
+.feature-highlight-card p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: inherit;
+}
+
+.feature-highlight-card h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.3;
+    white-space: pre-line;
+    color: inherit;
+}
+
+.feature-highlight-card:hover {
+    transform: none;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+    cursor: default;
+}
+
+/* Feature Cards */
+.feature-card {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    max-width: 240px;
+    flex: 1 1 220px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    background: linear-gradient(135deg, #e53935, #b71c1c 60%, #000000);
+    color: white;
+    text-align: center;
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(183, 28, 28, 0.7);
+}
+
+.feature-card:hover p,
+.feature-card:hover h3,
+.feature-card:hover .icon {
+    color: inherit;
+}
+
+.feature-card .icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+    transition: filter 0.3s ease;
+}
+
+.feature-card:hover .icon {
+    filter: brightness(150%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    #features-section {
+        flex-direction: row;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .feature-highlight-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        height: auto;
+        padding: 30px 20px;
+        margin-top: 20px;
+    }
+
+    .feature-card {
+        flex: 1 1 45%;
+        max-width: 45%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #features-section {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .feature-highlight-card {
+        order: -1; /* move to top on small screens */
+        max-width: 100%;
+        flex: 1 1 100%;
+        height: auto;
+        padding: 25px 15px;
+        margin-top: 0;
+    }
+
+    .feature-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+}
+
+  
+  /* --- Animation Base Classes --- */
+  .hidden-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 1.2s ease;
+  }
+  .animate-left {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .hidden-fade {
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  .animate-fade {
+    opacity: 1;
+  }
+  
+  /* Disable animations on mobile */
+  @media (max-width: 768px) {
+    .hidden-left,
+    .animate-left,
+    .hidden-fade,
+    .animate-fade {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+  
 
 /* ================================================= */
 /* ------------------ Rooms Style ------------------ */
